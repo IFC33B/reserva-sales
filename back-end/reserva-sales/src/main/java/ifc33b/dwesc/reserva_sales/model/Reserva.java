@@ -1,6 +1,6 @@
 package ifc33b.dwesc.reserva_sales.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +29,7 @@ public class Reserva {
 
     @NotNull(message = "El dia es obligatorio")
     @Column(nullable = false)
-    private LocalDateTime dia;
+    private LocalDate dia;
 
     @NotNull(message = "La hora es obligatoria")
     @Min(value = 0, message = "La hora mínima es 0")
@@ -44,10 +44,13 @@ public class Reserva {
     // Constructores
     public Reserva() {}
 
-    public Reserva(String nomSala, LocalDateTime dia, Integer hora, String usuari) {
+    public Reserva(String nomSala, String dia, Integer hora, String usuari) {
         this.setNomSala(nomSala);
-        this.setDia(dia);
         this.setHora(hora);
         this.setUsuari(usuari);
+        this.setHora(hora);
+
+        LocalDate diaDate = LocalDate.parse(dia);
+        this.setDia(diaDate);
     }
 }

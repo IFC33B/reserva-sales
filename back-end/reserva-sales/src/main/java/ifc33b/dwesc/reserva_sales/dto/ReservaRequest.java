@@ -15,7 +15,7 @@ public class ReservaRequest {
     private String nomSala;
 
     @NotNull(message = "El dia es obligatorio")
-    private LocalDateTime dia;
+    private String dia;
 
     @NotNull(message = "La hora es obligatoria")
     @Min(value = 0, message = "La hora mínima es 0")
@@ -26,7 +26,7 @@ public class ReservaRequest {
     private String usuari;
 
     // Constructores
-    public ReservaRequest (String nomSala, LocalDateTime dia, Integer hora, String usuari) {
+    public ReservaRequest (String nomSala, String dia, Integer hora, String usuari) {
         this.setNomSala(nomSala);
         this.setDia(dia);
         this.setHora(hora);

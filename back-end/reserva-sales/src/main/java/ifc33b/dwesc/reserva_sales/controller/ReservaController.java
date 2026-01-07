@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifc33b.dwesc.reserva_sales.dto.ReservaRequest;
 import ifc33b.dwesc.reserva_sales.dto.ReservaResponse;
 import ifc33b.dwesc.reserva_sales.service.ReservaService;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ class ReservaController {
     }
     
     @PostMapping() // Crea una reserva
-    public ResponseEntity<ReservaResponse> createReserva(@RequestBody ReservaRequest request) {
+    public ResponseEntity<ReservaResponse> createReserva(@Valid @RequestBody ReservaRequest request) {
         // Service
         ReservaResponse response = reservaService.createReserva(request);
 
