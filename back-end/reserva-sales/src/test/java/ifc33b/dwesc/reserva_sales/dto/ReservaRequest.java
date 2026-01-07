@@ -2,7 +2,6 @@ package ifc33b.dwesc.reserva_sales.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
