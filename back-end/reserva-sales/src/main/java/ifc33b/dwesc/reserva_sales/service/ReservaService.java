@@ -11,6 +11,7 @@ import ifc33b.dwesc.reserva_sales.dto.ReservaResponse;
 import ifc33b.dwesc.reserva_sales.exception.SalaOcupadaException;
 import ifc33b.dwesc.reserva_sales.model.Reserva;
 import ifc33b.dwesc.reserva_sales.repository.ReservaRepository;
+import java.time.LocalDate;
 
 @Service
 public class ReservaService {
@@ -26,8 +27,11 @@ public class ReservaService {
 
     // Crea una reserva
     public ReservaResponse createReserva(ReservaRequest request) {
-        reservaRepository.findByNomSalaAndDiaAndHora(request.getNomSala(), request.getDia(), request.getHora())
-                .orElseThrow(() -> new SalaOcupadaException(request.getNomSala()));
+        LocalDate dia = LocalDate.parse(request.getDia());
+
+        if (reservaRepository.existsByNomSalaAndDiaAndHora(request.getNomSala(), dia, request.getHora())) {
+            throw new SalaOcupadaException(request.getNomSala());
+        }
 
         Reserva reserva = new Reserva(request.getNomSala(), request.getDia(), request.getHora(), request.getUsuari());
         reservaRepository.save(reserva);
