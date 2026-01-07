@@ -41,4 +41,14 @@ public class Reserva {
     @NotBlank(message = "El nombre de usuario es obligatorio")
     @Column(nullable = false)
     private String usuari;
+
+    // Constructores
+    public Reserva() {}
+
+    public Reserva(String nomSala, LocalDateTime dia, Integer hora, String usuari) {
+        this.setNomSala(nomSala);
+        this.setDia(dia);
+        this.setHora(hora);
+        this.setUsuari(usuari);
+    }
 }
